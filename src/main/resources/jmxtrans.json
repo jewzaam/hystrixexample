@@ -1,0 +1,18 @@
+{
+    "outputWriters": [
+    {
+        "@class": "org.jmxtrans.embedded.output.LibratoWriter",
+        "settings": {
+            "source": "${librato.source:#hostname#}",
+            "username": "${librato.username:}",
+            "token": "${librato.token:}",
+            "enabled": "${librato.enabled:false}"
+        }
+    }
+],
+    "queryIntervalInSeconds": "${jmxtrans.queryIntervalInSeconds:30}",
+    "numQueryThreads": "${jmxtrans.numQueryThreads:2}",
+    "numExportThreads": "${jmxtrans.numExportThreads:2}",
+    "exportIntervalInSeconds": "${jmxtrans.exportIntervalInSeconds:5}",
+    "exportBatchSize": "${jmxtrans.exportBatchSize:50}"
+}
