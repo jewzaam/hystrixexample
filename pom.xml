@@ -38,43 +38,43 @@
                 <enabled>true</enabled>
             </snapshots>
         </repository>
-	</repositories>
-	<pluginRepositories>
-		<pluginRepository>
-			<id>eap</id>
-			<url>http://maven.repository.redhat.com/techpreview/all</url>
-			<releases>
-				<enabled>true</enabled>
-			</releases>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
-		</pluginRepository>
-	</pluginRepositories>
-	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<maven.compiler.source>1.6</maven.compiler.source>
-		<maven.compiler.target>1.6</maven.compiler.target>
-	</properties>
-	<dependencies>
-		<dependency>
-			<groupId>org.jboss.spec</groupId>
-			<artifactId>jboss-javaee-6.0</artifactId>
-			<version>3.0.0.Final-redhat-1</version>
-			<type>pom</type>
-			<scope>provided</scope>
-		</dependency>
+    </repositories>
+    <pluginRepositories>
+        <pluginRepository>
+            <id>eap</id>
+            <url>http://maven.repository.redhat.com/techpreview/all</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </pluginRepository>
+    </pluginRepositories>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>1.6</maven.compiler.source>
+        <maven.compiler.target>1.6</maven.compiler.target>
+    </properties>
+    <dependencies>
+        <dependency>
+            <groupId>org.jboss.spec</groupId>
+            <artifactId>jboss-javaee-6.0</artifactId>
+            <version>3.0.0.Final-redhat-1</version>
+            <type>pom</type>
+            <scope>provided</scope>
+        </dependency>
         <dependency>
             <groupId>org.ebaysf.web</groupId>
             <artifactId>cors-filter</artifactId>
             <version>1.0.0</version>
         </dependency>
         <dependency>
-            <groupId>com.librato.metrics</groupId>
-            <artifactId>librato-java</artifactId>
-            <version>0.1.0</version>
+            <groupId>org.jmxtrans.embedded</groupId>
+            <artifactId>embedded-jmxtrans</artifactId>
+            <version>1.0.9</version>
         </dependency>
-	</dependencies>
+    </dependencies>
     <build>
         <plugins>
             <plugin>
@@ -140,25 +140,25 @@
             </plugin>
         </plugins>
     </build>
-	<profiles>
-		<profile>
-			<!-- When built in OpenShift the 'openshift' profile will be used when 
-				invoking mvn. -->
-			<!-- Use this profile for any OpenShift specific customization your app 
-				will need. -->
-			<!-- By default that is to put the resulting archive into the 'deployments' 
-				folder. -->
-			<!-- http://maven.apache.org/guides/mini/guide-building-for-different-environments.html -->
-			<id>openshift</id>
-			<build>
-				<finalName>librato</finalName>
-				<plugins>
-					<plugin>
-						<artifactId>maven-war-plugin</artifactId>
-						<version>2.1.1</version>
-						<configuration>
-							<outputDirectory>deployments</outputDirectory>
-							<warName>ROOT</warName>
+    <profiles>
+        <profile>
+            <!-- When built in OpenShift the 'openshift' profile will be used when 
+            invoking mvn. -->
+            <!-- Use this profile for any OpenShift specific customization your app 
+            will need. -->
+            <!-- By default that is to put the resulting archive into the 'deployments' 
+            folder. -->
+            <!-- http://maven.apache.org/guides/mini/guide-building-for-different-environments.html -->
+            <id>openshift</id>
+            <build>
+                <finalName>librato</finalName>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-war-plugin</artifactId>
+                        <version>2.1.1</version>
+                        <configuration>
+                            <outputDirectory>deployments</outputDirectory>
+                            <warName>ROOT</warName>
                             <webResources>
                                 <resource>
                                     <directory>${project.build.directory}/generated-sources/apidocs</directory>
@@ -166,10 +166,10 @@
                                     <targetPath>apidocs</targetPath>
                                 </resource>
                             </webResources>
-						</configuration>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
-	</profiles>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 </project>
