@@ -1,42 +1,42 @@
 {
     "queries": [
     {
-        "objectName": "com.netflix.servo:name=sleep,type=GUAGE",
-        "resultAlias": "guage.sleep",
+        "objectName": "com.netflix.servo:name=sleep,type=GAUGE",
+        "resultAlias": "api.sleep",
         "attributes": [
             {
                 "name": "value",
-                "resultAlias": ""
+                "resultAlias": "gauge"
             }
         ]
     },
     {
         "objectName": "com.netflix.servo:name=increment,type=COUNTER",
-        "resultAlias": "counter.increment",
+        "resultAlias": "api.increment",
         "attributes": [
             {
                 "name": "value",
-                "resultAlias": ""
+                "resultAlias": "count"
             }
         ]
     },
     {
         "objectName": "com.netflix.servo:name=decrement,type=COUNTER",
-        "resultAlias": "counter.decrement",
+        "resultAlias": "api.decrement",
         "attributes": [
             {
                 "name": "value",
-                "resultAlias": ""
+                "resultAlias": "count"
             }
         ]
     },
     {
         "objectName": "com.netflix.servo:name=sleep,type=COUNTER",
-        "resultAlias": "counter.sleep",
+        "resultAlias": "api.sleep",
         "attributes": [
             {
                 "name": "value",
-                "resultAlias": ""
+                "resultAlias": "count"
             }
         ]
     }
