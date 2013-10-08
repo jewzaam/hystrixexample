@@ -2,7 +2,7 @@
     "queries": [
     {
         "objectName": "com.netflix.servo:name=sleep,type=GAUGE",
-        "resultAlias": "api.sleep",
+        "resultAlias": "gauge.sleep",
         "attributes": [
             {
                 "name": "value",
@@ -13,7 +13,7 @@
     },
     {
         "objectName": "com.netflix.servo:name=increment,type=COUNTER",
-        "resultAlias": "api.increment",
+        "resultAlias": "count.increment",
         "attributes": [
             {
                 "name": "value",
@@ -24,7 +24,7 @@
     },
     {
         "objectName": "com.netflix.servo:name=decrement,type=COUNTER",
-        "resultAlias": "api.decrement",
+        "resultAlias": "count.decrement",
         "attributes": [
             {
                 "name": "value",
@@ -35,7 +35,7 @@
     },
     {
         "objectName": "com.netflix.servo:name=sleep,type=COUNTER",
-        "resultAlias": "api.sleep",
+        "resultAlias": "count.sleep",
         "attributes": [
             {
                 "name": "value",
