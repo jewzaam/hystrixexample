@@ -6,6 +6,7 @@
         "attributes": [
             {
                 "name": "value",
+                "type": "gauge",
                 "resultAlias": "gauge"
             }
         ]
@@ -16,6 +17,7 @@
         "attributes": [
             {
                 "name": "value",
+                "type": "counter",
                 "resultAlias": "count"
             }
         ]
@@ -26,6 +28,7 @@
         "attributes": [
             {
                 "name": "value",
+                "type": "counter",
                 "resultAlias": "count"
             }
         ]
@@ -36,6 +39,7 @@
         "attributes": [
             {
                 "name": "value",
+                "type": "counter",
                 "resultAlias": "count"
             }
         ]
