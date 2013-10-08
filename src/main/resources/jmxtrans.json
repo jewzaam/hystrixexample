@@ -1,4 +1,46 @@
 {
+    "queries": [
+    {
+        "objectName": "com.netflix.servo:name=sleep,type=GUAGE",
+        "resultAlias": "guage.sleep",
+        "attributes": [
+            {
+                "name": "value",
+                "resultAlias": "guage.sleep.value"
+            }
+        ]
+    },
+    {
+        "objectName": "com.netflix.servo:name=increment,type=COUNTER",
+        "resultAlias": "counter.increment",
+        "attributes": [
+            {
+                "name": "value",
+                "resultAlias": "counter.increment.value"
+            }
+        ]
+    },
+    {
+        "objectName": "com.netflix.servo:name=decrement,type=COUNTER",
+        "resultAlias": "counter.decrement",
+        "attributes": [
+            {
+                "name": "value",
+                "resultAlias": "counter.decrement.value"
+            }
+        ]
+    },
+    {
+        "objectName": "com.netflix.servo:name=sleep,type=COUNTER",
+        "resultAlias": "counter.sleep",
+        "attributes": [
+            {
+                "name": "value",
+                "resultAlias": "counter.sleep.value"
+            }
+        ]
+    }
+],
     "outputWriters": [
     {
         "@class": "org.jmxtrans.embedded.output.LibratoWriter",

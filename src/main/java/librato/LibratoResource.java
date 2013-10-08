@@ -12,8 +12,10 @@ import javax.ws.rs.core.Response;
  * 
  * @author nmalik
  */
-@Path("/newrelic")
+@Path("/librato")
 public class LibratoResource {
+
+    private static ServiceMetrics metrics = ServoServiceMetrics.getInstance();
 
     private int toInteger(String number) {
         try {
@@ -34,6 +36,7 @@ public class LibratoResource {
     @GET
     @Path("/increment/{number:.+}")
     public Number increment(@PathParam("number") String number) {
+        metrics.incrementCounter("increment");
         return toInteger(number) + 1;
     }
 
@@ -47,6 +50,7 @@ public class LibratoResource {
     @GET
     @Path("/decrement/{number:.+}")
     public Number decrement(@PathParam("number") String number) {
+        metrics.incrementCounter("decrement");
         return toInteger(number) - 1;
     }
 
@@ -61,13 +65,17 @@ public class LibratoResource {
     @GET
     @Path("/sleep/{seconds:.+}")
     public String sleep(@PathParam("seconds") String seconds) {
-        int i = toInteger(seconds);
+        metrics.incrementCounter("sleep");
 
         try {
+            int i = toInteger(seconds);
+            metrics.incrementGauge("sleep");
             Thread.sleep(i * 1000);
         } catch (InterruptedException e) {
             Response r = Response.status(Response.Status.INTERNAL_SERVER_ERROR).type(MediaType.APPLICATION_JSON).entity("Timed out sleeping!").build();
             throw new WebApplicationException(e, r);
+        } finally {
+            metrics.decrementGauge("sleep");
         }
 
         return seconds;

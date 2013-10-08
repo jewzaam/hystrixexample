@@ -70,6 +70,11 @@
             <version>1.0.0</version>
         </dependency>
         <dependency>
+            <groupId>com.netflix.servo</groupId>
+            <artifactId>servo-core</artifactId>
+            <version>0.4.44</version>
+        </dependency>
+        <dependency>
             <groupId>org.jmxtrans.embedded</groupId>
             <artifactId>embedded-jmxtrans</artifactId>
             <version>1.0.9</version>
