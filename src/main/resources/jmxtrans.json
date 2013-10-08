@@ -43,6 +43,20 @@
                 "resultAlias": "count"
             }
         ]
+    },
+    {
+        "objectName": "jboss.as:deployment=ROOT.war,subsystem=web,servlet=librato.RestApplication",
+        "resultAlias": "application",
+        "attributes": [
+            {
+                "name": "requestCount",
+                "type": "counter"
+            },
+            {
+                "name": "processingTime",
+                "type": "counter"
+            }
+        ]
     }
 ],
     "outputWriters": [
