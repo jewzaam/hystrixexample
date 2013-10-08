@@ -1,12 +1,24 @@
 {
     "queries": [
     {
-        "objectName": "com.netflix.servo:name=*,type=*",
+        "objectName": "com.netflix.servo:name=*,type=COUNTER",
         "resultAlias": "rest.%name%",
         "attributes": [
             {
                 "name": "value",
-                "resultAlias": "%type%"
+                "type": "counter",
+                "resultAlias": "counter"
+            }
+        ]
+    },
+    {
+        "objectName": "com.netflix.servo:name=*,type=GAUGE",
+        "resultAlias": "rest.%name%",
+        "attributes": [
+            {
+                "name": "value",
+                "type": "gauge",
+                "resultAlias": "gauge"
             }
         ]
     }
