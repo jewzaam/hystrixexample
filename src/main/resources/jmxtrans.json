@@ -1,60 +1,12 @@
 {
     "queries": [
     {
-        "objectName": "com.netflix.servo:name=sleep,type=GAUGE",
-        "resultAlias": "gauge.sleep",
+        "objectName": "com.netflix.servo:name=*,type=*",
+        "resultAlias": "rest.%name%",
         "attributes": [
             {
                 "name": "value",
-                "type": "gauge",
-                "resultAlias": "gauge"
-            }
-        ]
-    },
-    {
-        "objectName": "com.netflix.servo:name=increment,type=COUNTER",
-        "resultAlias": "count.increment",
-        "attributes": [
-            {
-                "name": "value",
-                "type": "counter",
-                "resultAlias": "count"
-            }
-        ]
-    },
-    {
-        "objectName": "com.netflix.servo:name=decrement,type=COUNTER",
-        "resultAlias": "count.decrement",
-        "attributes": [
-            {
-                "name": "value",
-                "type": "counter",
-                "resultAlias": "count"
-            }
-        ]
-    },
-    {
-        "objectName": "com.netflix.servo:name=sleep,type=COUNTER",
-        "resultAlias": "count.sleep",
-        "attributes": [
-            {
-                "name": "value",
-                "type": "counter",
-                "resultAlias": "count"
-            }
-        ]
-    },
-    {
-        "objectName": "jboss.as:deployment=ROOT.war,subsystem=web,servlet=librato.RestApplication",
-        "resultAlias": "application",
-        "attributes": [
-            {
-                "name": "requestCount",
-                "type": "counter"
-            },
-            {
-                "name": "processingTime",
-                "type": "counter"
+                "resultAlias": "%type%"
             }
         ]
     }
@@ -70,9 +22,9 @@
         }
     }
 ],
-    "queryIntervalInSeconds": "${jmxtrans.queryIntervalInSeconds:5}",
+    "queryIntervalInSeconds": "${jmxtrans.queryIntervalInSeconds:30}",
     "numQueryThreads": "${jmxtrans.numQueryThreads:1}",
     "numExportThreads": "${jmxtrans.numExportThreads:2}",
-    "exportIntervalInSeconds": "${jmxtrans.exportIntervalInSeconds:30}",
+    "exportIntervalInSeconds": "${jmxtrans.exportIntervalInSeconds:5}",
     "exportBatchSize": "${jmxtrans.exportBatchSize:50}"
 }
