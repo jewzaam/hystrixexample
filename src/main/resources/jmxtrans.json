@@ -6,7 +6,7 @@
         "attributes": [
             {
                 "name": "value",
-                "resultAlias": "guage.sleep.value"
+                "resultAlias": ""
             }
         ]
     },
@@ -16,7 +16,7 @@
         "attributes": [
             {
                 "name": "value",
-                "resultAlias": "counter.increment.value"
+                "resultAlias": ""
             }
         ]
     },
@@ -26,7 +26,7 @@
         "attributes": [
             {
                 "name": "value",
-                "resultAlias": "counter.decrement.value"
+                "resultAlias": ""
             }
         ]
     },
@@ -36,7 +36,7 @@
         "attributes": [
             {
                 "name": "value",
-                "resultAlias": "counter.sleep.value"
+                "resultAlias": ""
             }
         ]
     }
@@ -52,9 +52,9 @@
         }
     }
 ],
-    "queryIntervalInSeconds": "${jmxtrans.queryIntervalInSeconds:30}",
-    "numQueryThreads": "${jmxtrans.numQueryThreads:2}",
+    "queryIntervalInSeconds": "${jmxtrans.queryIntervalInSeconds:5}",
+    "numQueryThreads": "${jmxtrans.numQueryThreads:1}",
     "numExportThreads": "${jmxtrans.numExportThreads:2}",
-    "exportIntervalInSeconds": "${jmxtrans.exportIntervalInSeconds:5}",
+    "exportIntervalInSeconds": "${jmxtrans.exportIntervalInSeconds:30}",
     "exportBatchSize": "${jmxtrans.exportBatchSize:50}"
 }
