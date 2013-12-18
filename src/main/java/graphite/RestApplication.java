@@ -1,4 +1,4 @@
-package librato;
+package graphite;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -12,6 +12,6 @@ public class RestApplication extends Application {
 
     @Override
     public Set<Class<?>> getClasses() {
-        return new HashSet<Class<?>>(Arrays.asList(LibratoResource.class));
+        return new HashSet<Class<?>>(Arrays.asList(GraphiteResource.class));
     }
 }

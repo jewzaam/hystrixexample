@@ -1,11 +1,11 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>librato</groupId>
-    <artifactId>librato</artifactId>
+    <groupId>graphite</groupId>
+    <artifactId>graphite</artifactId>
     <packaging>war</packaging>
-    <version>1.0</version>
-    <name>librato</name>
+    <version>0.1.0-SNAPSHOT</version>
+    <name>graphite</name>
     <repositories>
         <repository>
             <id>eap</id>
@@ -37,6 +37,11 @@
             <snapshots>
                 <enabled>true</enabled>
             </snapshots>
+        </repository>
+        <repository>
+            <id>unknown-jars-temp-repo</id>
+            <name>A temporary repository created by NetBeans for libraries and jars it could not identify. Please replace the dependencies in this repository with correct ones and delete this repository.</name>
+            <url>file:${project.basedir}/lib</url>
         </repository>
     </repositories>
     <pluginRepositories>
@@ -78,6 +83,11 @@
             <groupId>org.jmxtrans.embedded</groupId>
             <artifactId>embedded-jmxtrans</artifactId>
             <version>1.0.9</version>
+        </dependency>
+        <dependency>
+            <groupId>unknown.binary</groupId>
+            <artifactId>javax.ws.rs-api-2.0</artifactId>
+            <version>SNAPSHOT</version>
         </dependency>
     </dependencies>
     <build>
@@ -156,7 +166,7 @@
             <!-- http://maven.apache.org/guides/mini/guide-building-for-different-environments.html -->
             <id>openshift</id>
             <build>
-                <finalName>librato</finalName>
+                <finalName>graphite</finalName>
                 <plugins>
                     <plugin>
                         <artifactId>maven-war-plugin</artifactId>

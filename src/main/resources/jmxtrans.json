@@ -25,12 +25,10 @@
 ],
     "outputWriters": [
     {
-        "@class": "org.jmxtrans.embedded.output.LibratoWriter",
+        "@class": "org.jmxtrans.embedded.output.GraphiteWriter",
         "settings": {
-            "source": "${librato.source:#hostname#}",
-            "username": "${librato.username:}",
-            "token": "${librato.token:}",
-            "enabled": "${librato.enabled:false}"
+            "port": 2003,
+            "server": "metrics11.devlab.redhat.com"
         }
     }
 ],

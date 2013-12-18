@@ -1,4 +1,4 @@
-package librato;
+package graphite;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -12,8 +12,8 @@ import javax.ws.rs.core.Response;
  * 
  * @author nmalik
  */
-@Path("/librato")
-public class LibratoResource {
+@Path("/graphite")
+public class GraphiteResource {
 
     private static ServiceMetrics metrics = ServoServiceMetrics.getInstance();
 

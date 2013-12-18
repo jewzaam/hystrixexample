@@ -1,4 +1,0 @@
-#!/bin/sh
-
-export _JAVA_OPTIONS="-Dlibrato.username=nmalik@redhat.com -Dlibrato.token=56a108eedb07de20069b5c2958a3b521f613c9b1cbe70c76c3d3c5fe5ac858cd -Dlibrato.enabled=true -Dlibrato.source=${OPENSHIFT_APP_DNS}"
-

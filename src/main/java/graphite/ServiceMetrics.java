@@ -1,4 +1,4 @@
-package librato;
+package graphite;
 
 import java.util.Set;
 
