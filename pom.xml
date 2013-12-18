@@ -84,11 +84,6 @@
             <artifactId>embedded-jmxtrans</artifactId>
             <version>1.0.9</version>
         </dependency>
-        <dependency>
-            <groupId>unknown.binary</groupId>
-            <artifactId>javax.ws.rs-api-2.0</artifactId>
-            <version>SNAPSHOT</version>
-        </dependency>
     </dependencies>
     <build>
         <plugins>
