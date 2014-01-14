@@ -27,7 +27,7 @@
     {
         "@class": "org.jmxtrans.embedded.output.GraphiteWriter",
         "settings": {
-            "port": 2003,
+            "port": 8080,
             "host": "metrics11.devlab.redhat.com"
         }
     }
