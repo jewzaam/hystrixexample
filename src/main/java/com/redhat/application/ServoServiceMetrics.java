@@ -1,4 +1,4 @@
-package graphite;
+package com.redhat.application;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -34,29 +34,33 @@ import com.netflix.servo.tag.Tag;
 
 /**
  * Provides a single place to capture all metrics for the service.
- * 
- * Right now this uses Servo (https://github.com/Netflix/servo/wiki) to capture
- * metrics. Tags used for each metric are HOSTNAME and IP.
- * 
+ *
+ * Right now this uses Servo (https://github.com/Netflix/servo/wiki) to capture metrics. Tags used for each metric are
+ * HOSTNAME and IP.
+ *
  * @author nmalik
  */
 public class ServoServiceMetrics implements ServiceMetrics {
-    private static Logger log = Logger.getLogger(ServoServiceMetrics.class.getName());
+    private static final Logger log = Logger.getLogger(ServoServiceMetrics.class.getName());
 
-    /** Name of the monitor used by Servo. */
-    private static String MONITOR_ID = ServoServiceMetrics.class.getSimpleName();
+    /**
+     * Name of the monitor used by Servo.
+     */
+    private static final String MONITOR_ID = ServoServiceMetrics.class.getSimpleName();
 
     /**
      * Semaphore used for creating instance and for creating new metric objects.
      */
-    private static Semaphore semaphore = new Semaphore(1);
+    private static final Semaphore semaphore = new Semaphore(1);
 
-    /** Singleton instance of this class. */
+    /**
+     * Singleton instance of this class.
+     */
     private static ServiceMetrics server;
 
     /**
      * Create or return the singleton instance of this class.
-     * 
+     *
      * @return singleton instance
      */
     public static ServiceMetrics getInstance() {
@@ -78,13 +82,13 @@ public class ServoServiceMetrics implements ServiceMetrics {
     }
 
     @Monitor(name = "Status", type = DataSourceType.INFORMATIONAL)
-    private AtomicReference<String> status = new AtomicReference<String>("UP");
+    private final AtomicReference<String> status = new AtomicReference<String>("UP");
 
-    private Map<String, Counter> counters = new HashMap<String, Counter>();
+    private final Map<String, Counter> counters = new HashMap<String, Counter>();
 
-    private Map<String, Gauge<Number>> gauges = new HashMap<String, Gauge<Number>>();
+    private final Map<String, Gauge<Number>> gauges = new HashMap<String, Gauge<Number>>();
 
-    private Map<String, AtomicInteger> gaugeData = new HashMap<String, AtomicInteger>();
+    private final Map<String, AtomicInteger> gaugeData = new HashMap<String, AtomicInteger>();
 
     private ServoServiceMetrics() {
         // create tag list
@@ -105,11 +109,9 @@ public class ServoServiceMetrics implements ServiceMetrics {
     }
 
     /**
-     * Gets the data for the given gauge name. If the gauge doesn't exist,
-     * creates it with tags HOSTNAME and IP.
-     * 
-     * @param name
-     *            - the name of the gauge
+     * Gets the data for the given gauge name. If the gauge doesn't exist, creates it with tags HOSTNAME and IP.
+     *
+     * @param name - the name of the gauge
      * @return
      */
     private AtomicInteger getGaugeData(String name) {

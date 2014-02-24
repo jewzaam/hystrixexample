@@ -1,4 +1,4 @@
-package graphite;
+package com.redhat.application;
 
 import java.util.Set;
 

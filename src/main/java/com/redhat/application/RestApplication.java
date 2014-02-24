@@ -1,4 +1,4 @@
-package graphite;
+package com.redhat.application;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -9,9 +9,8 @@ import javax.ws.rs.core.Application;
 
 @ApplicationPath("/rest")
 public class RestApplication extends Application {
-
     @Override
     public Set<Class<?>> getClasses() {
-        return new HashSet<Class<?>>(Arrays.asList(GraphiteResource.class));
+        return new HashSet<Class<?>>(Arrays.asList(TestResource.class));
     }
 }
