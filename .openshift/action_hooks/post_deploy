@@ -1,6 +1,6 @@
 #!/bin/sh
 
-echo "Waiting for serivces to start:"
+echo "Waiting for services to start:"
 for svc in "${OPENSHIFT_GEAR_DNS}/health" "${OPENSHIFT_GEAR_DNS}/health.jsp" "${OPENSHIFT_GEAR_DNS}/apidocs/";
 do
     echo -n ${svc}..

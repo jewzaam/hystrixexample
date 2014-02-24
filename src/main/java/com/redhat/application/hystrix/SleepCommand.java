@@ -19,7 +19,7 @@ import javax.ws.rs.core.Response;
  * @author nmalik
  */
 public class SleepCommand extends HystrixCommand<String> {
-    private static final int TIMEOUT_THRESHOLD_SECONDS = 2;
+    private static final int TIMEOUT_THRESHOLD_MILLISECONDS = 2000;
     protected static ServiceMetrics METRICS = ServoServiceMetrics.getInstance();
 
     protected int toInteger(String number) {
@@ -31,13 +31,14 @@ public class SleepCommand extends HystrixCommand<String> {
         }
     }
 
-    private final String seconds;
+    private final String msec;
+    private Exception exception;
 
-    public SleepCommand(String seconds) {
+    public SleepCommand(String msec) {
         super(Setter.withGroupKey(HystrixCommandGroupKey.Factory.asKey("test"))
                 .andCommandPropertiesDefaults(HystrixCommandProperties.Setter()
-                        .withExecutionIsolationThreadTimeoutInMilliseconds(TIMEOUT_THRESHOLD_SECONDS * 1000)));
-        this.seconds = seconds;
+                        .withExecutionIsolationThreadTimeoutInMilliseconds(TIMEOUT_THRESHOLD_MILLISECONDS)));
+        this.msec = msec;
     }
 
     @Override
@@ -45,21 +46,20 @@ public class SleepCommand extends HystrixCommand<String> {
         METRICS.incrementCounter("sleep");
 
         try {
-            int i = toInteger(seconds);
+            int i = toInteger(msec);
             METRICS.incrementGauge("sleep");
-            Thread.sleep(i * 1000);
-        } catch (InterruptedException e) {
-            Response r = Response.status(Response.Status.INTERNAL_SERVER_ERROR).type(MediaType.APPLICATION_JSON).entity("Timed out sleeping!").build();
-            throw new WebApplicationException(e, r);
+            Thread.sleep(i);
         } finally {
             METRICS.decrementGauge("sleep");
         }
 
-        return seconds;
+        return msec;
     }
 
     @Override
     protected String getFallback() {
-        return seconds + " TIMEOUT";
+        Throwable e = getFailedExecutionException();
+        Response r = Response.status(Response.Status.INTERNAL_SERVER_ERROR).type(MediaType.APPLICATION_JSON).entity("Timed out sleeping!").build();
+        throw new WebApplicationException(e, r);
     }
 }
