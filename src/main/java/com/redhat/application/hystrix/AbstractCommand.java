@@ -23,6 +23,10 @@ public abstract class AbstractCommand<T> extends HystrixCommand<T> {
             throw new WebApplicationException(e, r);
         }
     }
+    
+    public AbstractCommand(HystrixCommandGroupKey keyGroup) {
+        super(keyGroup);
+    }
 
     public AbstractCommand(String commandGroup) {
         super(HystrixCommandGroupKey.Factory.asKey(commandGroup));
