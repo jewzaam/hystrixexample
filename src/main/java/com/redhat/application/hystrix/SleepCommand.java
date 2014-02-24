@@ -58,8 +58,6 @@ public class SleepCommand extends HystrixCommand<String> {
 
     @Override
     protected String getFallback() {
-        Throwable e = getFailedExecutionException();
-        Response r = Response.status(Response.Status.INTERNAL_SERVER_ERROR).type(MediaType.APPLICATION_JSON).entity("Timed out sleeping!").build();
-        throw new WebApplicationException(e, r);
+        return msec + " TIMEOUT";
     }
 }
