@@ -1,35 +1,11 @@
 {
     "queries": [
     {
-        "objectName": "com.netflix.servo:name=*,type=COUNTER",
-        "resultAlias": "servo.%name%",
+        "objectName": "com.netflix.servo:name=*,type=HystrixCommand",
+        "resultAlias": "servo.%instance%.%name%",
         "attributes": [
             {
-                "name": "value",
-                "type": "counter",
-                "resultAlias": "counter"
-            }
-        ]
-    },
-    {
-        "objectName": "com.netflix.servo:name=*,type=INFO",
-        "resultAlias": "servo.%name%",
-        "attributes": [
-            {
-                "name": "value",
-                "type": "gauge",
-                "resultAlias": "gauge"
-            }
-        ]
-    },
-    {
-        "objectName": "com.netflix.servo:name=*,type=GAUGE",
-        "resultAlias": "servo.%name%",
-        "attributes": [
-            {
-                "name": "value",
-                "type": "gauge",
-                "resultAlias": "gauge"
+                "name": "value"
             }
         ]
     }
