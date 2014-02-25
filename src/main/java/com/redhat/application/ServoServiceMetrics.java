@@ -1,5 +1,7 @@
 package com.redhat.application;
 
+import com.netflix.hystrix.contrib.servopublisher.HystrixServoMetricsPublisher;
+import com.netflix.hystrix.strategy.HystrixPlugins;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -106,6 +108,9 @@ public class ServoServiceMetrics implements ServiceMetrics {
         MetricObserver fileObserver = new FileMetricObserver("metrics", new File(System.getProperty("OPENSHIFT_JBOSSEAP_LOG_DIR", "/tmp")));
         PollRunnable task = new PollRunnable(new MonitorRegistryMetricPoller(), BasicMetricFilter.MATCH_ALL, fileObserver);
         scheduler.addPoller(task, 1, TimeUnit.MINUTES);
+        
+        // register the hystrix publisher
+        HystrixPlugins.getInstance().registerMetricsPublisher(HystrixServoMetricsPublisher.getInstance());
     }
 
     /**
