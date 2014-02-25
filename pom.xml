@@ -80,9 +80,9 @@
             <version>0.4.44</version>
         </dependency>
         <dependency>
-            <groupId>org.jmxtrans.embedded</groupId>
-            <artifactId>embedded-jmxtrans</artifactId>
-            <version>1.0.9</version>
+            <groupId>com.netflix.servo</groupId>
+            <artifactId>servo-graphite</artifactId>
+            <version>0.4.44</version>
         </dependency>
         <dependency>
             <groupId>com.netflix.hystrix</groupId>
