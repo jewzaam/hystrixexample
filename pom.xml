@@ -94,6 +94,11 @@
             <artifactId>hystrix-metrics-event-stream</artifactId>
             <version>1.1.2</version>
         </dependency>
+        <dependency>
+            <groupId>com.netflix.hystrix</groupId>
+            <artifactId>hystrix-servo-metrics-publisher</artifactId>
+            <version>1.1.2</version>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
