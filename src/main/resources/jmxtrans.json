@@ -2,7 +2,7 @@
     "queries": [
     {
         "objectName": "com.netflix.servo:name=*,type=COUNTER",
-        "resultAlias": "rest.%name%",
+        "resultAlias": "servo.%name%",
         "attributes": [
             {
                 "name": "value",
@@ -12,8 +12,19 @@
         ]
     },
     {
+        "objectName": "com.netflix.servo:name=*,type=INFO",
+        "resultAlias": "servo.%name%",
+        "attributes": [
+            {
+                "name": "value",
+                "type": "gauge",
+                "resultAlias": "gauge"
+            }
+        ]
+    },
+    {
         "objectName": "com.netflix.servo:name=*,type=GAUGE",
-        "resultAlias": "rest.%name%",
+        "resultAlias": "servo.%name%",
         "attributes": [
             {
                 "name": "value",

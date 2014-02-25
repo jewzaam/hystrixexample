@@ -5,21 +5,23 @@
  */
 package com.redhat.application.hystrix;
 
+import com.netflix.hystrix.HystrixCommand;
+import com.netflix.hystrix.HystrixCommandGroupKey;
+
 /**
  *
  * @author nmalik
  */
-public class IncrementCommand extends AbstractCommand<Integer> {
+public class IncrementCommand extends HystrixCommand<Integer> {
     private final String number;
 
     public IncrementCommand(String number) {
-        super("test");
+        super(HystrixCommandGroupKey.Factory.asKey("test"));
         this.number = number;
     }
 
     @Override
     protected Integer run() throws Exception {
-        METRICS.incrementCounter("increment");
-        return toInteger(number) + 1;
+        return Integer.valueOf(number) + 1;
     }
 }
