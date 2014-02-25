@@ -23,15 +23,15 @@ public class RestApplication extends Application {
         HystrixPlugins.getInstance().registerMetricsPublisher(HystrixServoMetricsPublisher.getInstance());
 
         // try to get name from openshift.  assume it's scaleable app.
-        // format: <app name>-<namespace>.<gear dns>
-        String prefix = System.getProperty("HOSTNAME)"); // default
+        // format: <app name>.  <namespace>.<gear dns>
+        String prefix = System.getenv("HOSTNAME)"); // default
 
-        if (System.getProperty("OPENSHIFT_APP_NAME") != null) {
+        if (System.getenv("OPENSHIFT_APP_NAME") != null) {
             prefix = String.format(
                     "%s.%s.%s",
-                    System.getProperty("OPENSHIFT_APP_NAME"),
-                    System.getProperty("OPENSHIFT_NAMESPACE"),
-                    System.getProperty("OPENSHIFT_GEAR_DNS")
+                    System.getenv("OPENSHIFT_APP_NAME"),
+                    System.getenv("OPENSHIFT_NAMESPACE"),
+                    System.getenv("OPENSHIFT_GEAR_DNS")
             );
         }
 
