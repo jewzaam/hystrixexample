@@ -27,7 +27,7 @@ public class RestApplication extends Application {
 
         // try to get name from openshift.  assume it's scaleable app.
         // format: <app name>.  <namespace>.<gear dns>
-        String prefix = System.getenv("HOSTNAME)"); // default
+        String prefix = System.getenv("HOSTNAME"); // default
 
         if (System.getenv("OPENSHIFT_APP_NAME") != null) {
             prefix = String.format(
@@ -38,11 +38,10 @@ public class RestApplication extends Application {
             );
         }
 
-        if (prefix == null || !prefix.isEmpty()) {
-            prefix = "naveen.was.here";
-        }
-
         System.out.println("prefix=" + prefix);
+        System.out.println("app=" + System.getenv("OPENSHIFT_APP_NAME"));
+        System.out.println("ns=" + System.getenv("OPENSHIFT_NAMESPACE"));
+        System.out.println("gear=" + System.getenv("OPENSHIFT_GEAR_DNS"));
 
         String addr = "metrics11.devlab.redhat.com:8080";
         MetricObserver observer = new GraphiteMetricObserver(prefix, addr);
