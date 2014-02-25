@@ -12,12 +12,15 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
+import java.util.logging.Logger;
 
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
 
 @ApplicationPath("/rest")
 public class RestApplication extends Application {
+    private static final Logger LOGGER = Logger.getLogger(RestApplication.class.getName());
+
     static {
         // register hystrix servo metrics publisher
         HystrixPlugins.getInstance().registerMetricsPublisher(HystrixServoMetricsPublisher.getInstance());
@@ -38,6 +41,8 @@ public class RestApplication extends Application {
         if (prefix == null || !prefix.isEmpty()) {
             prefix = "naveen.was.here";
         }
+
+        System.out.println("prefix=" + prefix);
 
         String addr = "metrics11.devlab.redhat.com:8080";
         MetricObserver observer = new GraphiteMetricObserver(prefix, addr);

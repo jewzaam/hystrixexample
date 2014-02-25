@@ -14,7 +14,6 @@ import javax.ws.rs.PathParam;
  */
 @Path("/test")
 public class TestResource {
-
     /**
      * Increment the given number
      *
