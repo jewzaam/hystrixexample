@@ -24,7 +24,7 @@ public final class HystrixConfiguration {
 
     public static HystrixCommand.Setter Setter(Class x, String groupName) {
         HystrixConfiguration config = configs.get(x);
-        if (x == null) {
+        if (config == null) {
             config = new HystrixConfiguration(x);
             configs.put(x, config);
         }

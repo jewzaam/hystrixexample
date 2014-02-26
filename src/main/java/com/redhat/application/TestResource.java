@@ -6,6 +6,7 @@ import com.redhat.application.hystrix.SleepCommand;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
+import javax.ws.rs.QueryParam;
 
 /**
  * Simple service to test things.
@@ -22,8 +23,8 @@ public class TestResource {
      */
     @GET
     @Path("/increment/{number:.+}")
-    public Number increment(@PathParam("number") String number) {
-        return new IncrementCommand(number).execute();
+    public Number increment(@PathParam("number") String number, @QueryParam("clientId") String clientId) {
+        return IncrementCommand.instance(number, clientId).execute();
     }
 
     /**
