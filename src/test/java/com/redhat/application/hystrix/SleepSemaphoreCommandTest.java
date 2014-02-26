@@ -30,7 +30,7 @@ public class SleepSemaphoreCommandTest {
 
     @Test
     public void single() {
-        SleepSemaphoreCommand command = new SleepSemaphoreCommand("0");
+        SleepSemaphoreCommand command = SleepSemaphoreCommand.instance("0", null);
         command.execute();
     }
 
@@ -43,7 +43,7 @@ public class SleepSemaphoreCommandTest {
         // setup
         List<HystrixCommandTestThread> threads = new ArrayList<HystrixCommandTestThread>();
         for (int i = 0; i < maxConcurrent * 5; i++) {
-            threads.add(new HystrixCommandTestThread(new SleepSemaphoreCommand("400")));
+            threads.add(new HystrixCommandTestThread(SleepSemaphoreCommand.instance("400", null)));
         }
 
         // execute

@@ -14,8 +14,20 @@ import com.netflix.hystrix.HystrixCommand;
 public class DecrementCommand extends HystrixCommand<Integer> {
     private final String number;
 
-    public DecrementCommand(String number) {
-        super(HystrixConfiguration.Setter(DecrementCommand.class, "test"));
+    public static DecrementCommand instance(String number, String clientId) {
+        if (null == clientId || clientId.isEmpty()) {
+            return new DecrementCommand(number);
+        } else {
+            return new DecrementCommand(number, clientId);
+        }
+    }
+
+    private DecrementCommand(String number) {
+        this(number, "test");
+    }
+
+    private DecrementCommand(String number, String clientId) {
+        super(HystrixConfiguration.Setter(DecrementCommand.class, clientId));
         this.number = number;
     }
 

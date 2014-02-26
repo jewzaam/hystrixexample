@@ -36,8 +36,8 @@ public class TestResource {
      */
     @GET
     @Path("/decrement/{number:.+}")
-    public Number decrement(@PathParam("number") String number) {
-        return new DecrementCommand(number).execute();
+    public Number decrement(@PathParam("number") String number, @QueryParam("clientId") String clientId) {
+        return DecrementCommand.instance(number, clientId).execute();
     }
 
     /**
@@ -48,9 +48,9 @@ public class TestResource {
      */
     @GET
     @Path("/sleep/{milliseconds:.+}")
-    public String sleep(@PathParam("milliseconds") String milliseconds, @QueryParam("type") String type) {
+    public String sleep(@PathParam("milliseconds") String milliseconds, @QueryParam("type") String type, @QueryParam("clientId") String clientId) {
         if (null == type || "semaphore".equalsIgnoreCase(type)) {
-            return new SleepSemaphoreCommand(milliseconds).execute();
+            return SleepSemaphoreCommand.instance(milliseconds, clientId).execute();
         } else {
             return new SleepThreadCommand(milliseconds).execute();
         }

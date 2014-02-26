@@ -14,8 +14,20 @@ import com.netflix.hystrix.HystrixCommand;
 public class SleepSemaphoreCommand extends HystrixCommand<String> {
     private final String msec;
 
-    public SleepSemaphoreCommand(String msec) {
-        super(HystrixConfiguration.Setter(SleepSemaphoreCommand.class, "test"));
+    public static SleepSemaphoreCommand instance(String number, String clientId) {
+        if (null == clientId || clientId.isEmpty()) {
+            return new SleepSemaphoreCommand(number);
+        } else {
+            return new SleepSemaphoreCommand(number, clientId);
+        }
+    }
+
+    private SleepSemaphoreCommand(String msec) {
+        this(msec, "test");
+    }
+
+    private SleepSemaphoreCommand(String msec, String clientId) {
+        super(HystrixConfiguration.Setter(SleepSemaphoreCommand.class, clientId));
         this.msec = msec;
     }
 
