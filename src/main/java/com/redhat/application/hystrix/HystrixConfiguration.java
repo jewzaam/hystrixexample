@@ -40,27 +40,27 @@ public final class HystrixConfiguration {
     private <T extends HystrixCommand> HystrixConfiguration(Class<T> x) {
         executionIsolationStrategy
                 = DynamicPropertyFactory.getInstance().getStringProperty(
-                        x.getClass().getName() + ".executionIsolationStrategy",
+                        x.getName() + ".executionIsolationStrategy",
                         HystrixCommandProperties.ExecutionIsolationStrategy.SEMAPHORE.name()
                 );
         executionIsolationSemaphoreMaxConcurrentRequests
                 = DynamicPropertyFactory.getInstance().getIntProperty(
-                        x.getClass().getName() + ".executionIsolationSemaphoreMaxConcurrentRequests",
+                        x.getName() + ".executionIsolationSemaphoreMaxConcurrentRequests",
                         10
                 );
         executionIsolationThreadInterruptOnTimeout
                 = DynamicPropertyFactory.getInstance().getBooleanProperty(
-                        x.getClass().getName() + ".executionIsolationThreadInterruptOnTimeout",
+                        x.getName() + ".executionIsolationThreadInterruptOnTimeout",
                         true
                 );
         executionIsolationThreadTimeoutInMilliseconds
                 = DynamicPropertyFactory.getInstance().getIntProperty(
-                        x.getClass().getName() + ".executionIsolationThreadTimeoutInMilliseconds",
+                        x.getName() + ".executionIsolationThreadTimeoutInMilliseconds",
                         2000
                 );
         fallbackIsolationSemaphoreMaxConcurrentRequests
                 = DynamicPropertyFactory.getInstance().getIntProperty(
-                        x.getClass().getName() + ".fallbackIsolationSemaphoreMaxConcurrentRequests",
+                        x.getName() + ".fallbackIsolationSemaphoreMaxConcurrentRequests",
                         10
                 );
     }

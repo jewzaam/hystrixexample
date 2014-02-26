@@ -2,7 +2,8 @@ package com.redhat.application;
 
 import com.redhat.application.hystrix.DecrementCommand;
 import com.redhat.application.hystrix.IncrementCommand;
-import com.redhat.application.hystrix.SleepCommand;
+import com.redhat.application.hystrix.SleepSemaphoreCommand;
+import com.redhat.application.hystrix.SleepThreadCommand;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -47,7 +48,11 @@ public class TestResource {
      */
     @GET
     @Path("/sleep/{milliseconds:.+}")
-    public String sleep(@PathParam("milliseconds") String milliseconds) {
-        return new SleepCommand(milliseconds).execute();
+    public String sleep(@PathParam("milliseconds") String milliseconds, @QueryParam("type") String type) {
+        if (null == type || "semaphore".equalsIgnoreCase(type)) {
+            return new SleepSemaphoreCommand(milliseconds).execute();
+        } else {
+            return new SleepThreadCommand(milliseconds).execute();
+        }
     }
 }

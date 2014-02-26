@@ -11,11 +11,11 @@ import com.netflix.hystrix.HystrixCommand;
  *
  * @author nmalik
  */
-public class SleepCommand extends HystrixCommand<String> {
+public class SleepThreadCommand extends HystrixCommand<String> {
     private final String msec;
 
-    public SleepCommand(String msec) {
-        super(HystrixConfiguration.Setter(SleepCommand.class, "test"));
+    public SleepThreadCommand(String msec) {
+        super(HystrixConfiguration.Setter(SleepThreadCommand.class, "test"));
         this.msec = msec;
     }
 

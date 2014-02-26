@@ -28,7 +28,7 @@ public class HystrixConfigurationTest {
 
     @Test
     public void sleep() {
-        HystrixCommand.Setter setter = HystrixConfiguration.Setter(SleepCommand.class, "test");
+        HystrixCommand.Setter setter = HystrixConfiguration.Setter(SleepThreadCommand.class, "test");
         Assert.assertNotNull(setter);
     }
 }
