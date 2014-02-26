@@ -6,7 +6,6 @@
 package com.redhat.application.hystrix;
 
 import com.netflix.hystrix.HystrixCommand;
-import com.netflix.hystrix.HystrixCommandGroupKey;
 
 /**
  *
@@ -16,7 +15,7 @@ public class DecrementCommand extends HystrixCommand<Integer> {
     private final String number;
 
     public DecrementCommand(String number) {
-        super(HystrixCommandGroupKey.Factory.asKey("test"));
+        super(HystrixConfiguration.Setter(DecrementCommand.class, "test"));
         this.number = number;
     }
 

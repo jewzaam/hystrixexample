@@ -6,22 +6,16 @@
 package com.redhat.application.hystrix;
 
 import com.netflix.hystrix.HystrixCommand;
-import com.netflix.hystrix.HystrixCommandGroupKey;
-import com.netflix.hystrix.HystrixCommandProperties;
 
 /**
  *
  * @author nmalik
  */
 public class SleepCommand extends HystrixCommand<String> {
-    private static final int TIMEOUT_THRESHOLD_MILLISECONDS = 2000;
-
     private final String msec;
 
     public SleepCommand(String msec) {
-        super(Setter.withGroupKey(HystrixCommandGroupKey.Factory.asKey("test"))
-                .andCommandPropertiesDefaults(HystrixCommandProperties.Setter()
-                        .withExecutionIsolationThreadTimeoutInMilliseconds(TIMEOUT_THRESHOLD_MILLISECONDS)));
+        super(HystrixConfiguration.Setter(SleepCommand.class, "test"));
         this.msec = msec;
     }
 
