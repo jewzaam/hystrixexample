@@ -52,7 +52,13 @@ public class TestResource {
         if (null == type || "semaphore".equalsIgnoreCase(type)) {
             return SleepSemaphoreCommand.instance(milliseconds, clientId).execute();
         } else {
-            return new SleepThreadCommand(milliseconds).execute();
+            return SleepThreadCommand.instance(milliseconds, clientId).execute();
         }
+    }
+    
+    @GET
+    @Path("/body")
+    public String body(String body) {
+        return body;
     }
 }

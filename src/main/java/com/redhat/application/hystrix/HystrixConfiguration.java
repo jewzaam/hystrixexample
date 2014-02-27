@@ -11,7 +11,9 @@ import com.netflix.config.DynamicPropertyFactory;
 import com.netflix.config.DynamicStringProperty;
 import com.netflix.hystrix.HystrixCommand;
 import com.netflix.hystrix.HystrixCommandGroupKey;
+import com.netflix.hystrix.HystrixCommandKey;
 import com.netflix.hystrix.HystrixCommandProperties;
+import com.netflix.hystrix.HystrixThreadPoolKey;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -28,7 +30,7 @@ public final class HystrixConfiguration {
             config = new HystrixConfiguration(x);
             configs.put(x, config);
         }
-        return config.setter(groupName);
+        return config.setter(x, groupName);
     }
 
     private final DynamicStringProperty executionIsolationStrategy;
@@ -65,8 +67,11 @@ public final class HystrixConfiguration {
                 );
     }
 
-    private HystrixCommand.Setter setter(String groupName) {
-        return HystrixCommand.Setter.withGroupKey(HystrixCommandGroupKey.Factory.asKey(groupName))
+    private HystrixCommand.Setter setter(Class clazz, String groupName) {
+        String name = clazz.getSimpleName() + ":" + groupName;
+        return HystrixCommand.Setter.withGroupKey(HystrixCommandGroupKey.Factory.asKey(name))
+                .andCommandKey(HystrixCommandKey.Factory.asKey(name))
+                .andThreadPoolKey(HystrixThreadPoolKey.Factory.asKey(name))
                 .andCommandPropertiesDefaults(HystrixCommandProperties.Setter()
                         .withExecutionIsolationStrategy(HystrixCommandProperties.ExecutionIsolationStrategy.valueOf(executionIsolationStrategy.get()))
                         .withExecutionIsolationSemaphoreMaxConcurrentRequests(executionIsolationSemaphoreMaxConcurrentRequests.get())
