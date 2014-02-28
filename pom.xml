@@ -1,11 +1,11 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>hystrix</groupId>
-    <artifactId>hystrix</artifactId>
+    <groupId>hystrixexample</groupId>
+    <artifactId>hystrixexample</artifactId>
     <packaging>war</packaging>
     <version>0.1.1-SNAPSHOT</version>
-    <name>hystrix</name>
+    <name>hystrixexample</name>
     <repositories>
         <repository>
             <id>eap</id>
@@ -182,7 +182,7 @@
             <!-- http://maven.apache.org/guides/mini/guide-building-for-different-environments.html -->
             <id>openshift</id>
             <build>
-                <finalName>hystrix</finalName>
+                <finalName>hystrixexample</finalName>
                 <plugins>
                     <plugin>
                         <artifactId>maven-war-plugin</artifactId>
