@@ -5,7 +5,6 @@ import com.netflix.hystrix.strategy.HystrixPlugins;
 import com.netflix.servo.publish.BasicMetricFilter;
 import com.netflix.servo.publish.JvmMetricPoller;
 import com.netflix.servo.publish.MetricObserver;
-import com.netflix.servo.publish.MonitorRegistryMetricPoller;
 import com.netflix.servo.publish.PollRunnable;
 import com.netflix.servo.publish.PollScheduler;
 import com.netflix.servo.publish.graphite.GraphiteMetricObserver;
@@ -34,8 +33,8 @@ public class ServoSetup {
             );
         }
 
-        String host = System.getenv("GRAPHITE_HOSTNAME");
-        String port = System.getenv("GRAPHITE_PORT");
+        String host = "metrics11.devlab.redhat.com";//System.getenv("GRAPHITE_HOSTNAME");
+        String port = "8080";//System.getenv("GRAPHITE_PORT");
 
         String addr = host + ":" + port;
         LOGGER.info("ServoConfig: prefix={}, address={}", prefix, addr);
