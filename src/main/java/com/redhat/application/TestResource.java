@@ -55,10 +55,4 @@ public class TestResource {
             return SleepThreadCommand.instance(milliseconds, clientId).execute();
         }
     }
-    
-    @GET
-    @Path("/body")
-    public String body(String body) {
-        return body;
-    }
 }
