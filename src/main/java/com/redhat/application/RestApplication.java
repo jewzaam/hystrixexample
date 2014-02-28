@@ -3,6 +3,7 @@ package com.redhat.application;
 import com.netflix.hystrix.contrib.servopublisher.HystrixServoMetricsPublisher;
 import com.netflix.hystrix.strategy.HystrixPlugins;
 import com.netflix.servo.publish.BasicMetricFilter;
+import com.netflix.servo.publish.JvmMetricPoller;
 import com.netflix.servo.publish.MetricObserver;
 import com.netflix.servo.publish.MonitorRegistryMetricPoller;
 import com.netflix.servo.publish.PollRunnable;
@@ -43,14 +44,16 @@ public class RestApplication extends Application {
         LOGGER.info("ServoConfig: prefix={}, address={}", prefix, addr);
         MetricObserver observer = new GraphiteMetricObserver(prefix, addr);
 
-        // create poller
+        // start poll scheduler
         PollScheduler.getInstance().start();
 
-        // create poller on observer
-        PollRunnable task = new PollRunnable(new MonitorRegistryMetricPoller(), BasicMetricFilter.MATCH_ALL, observer);
+        // create registry on observer
+        PollRunnable registeryTask = new PollRunnable(new MonitorRegistryMetricPoller(), BasicMetricFilter.MATCH_ALL, observer);
+        PollScheduler.getInstance().addPoller(registeryTask, 5, TimeUnit.SECONDS);
 
-        // register poller with scheduler
-        PollScheduler.getInstance().addPoller(task, 5, TimeUnit.SECONDS);
+        // create jvm poller
+        PollRunnable jvmTask = new PollRunnable(new JvmMetricPoller(), BasicMetricFilter.MATCH_ALL, observer);
+        PollScheduler.getInstance().addPoller(jvmTask, 5, TimeUnit.SECONDS);
     }
 
     @Override
