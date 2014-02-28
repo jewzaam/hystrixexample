@@ -132,7 +132,7 @@
                 <version>1.0-alpha-2</version>
                 <executions>
                     <execution>
-                        <id>swagger-peroperties-process</id>
+                        <id>swagger-properties-process</id>
                         <phase>process-resources</phase>
                         <goals>
                             <goal>read-project-properties</goal>

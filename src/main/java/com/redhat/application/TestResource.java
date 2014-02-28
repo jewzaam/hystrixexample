@@ -17,42 +17,46 @@ import javax.ws.rs.QueryParam;
 @Path("/test")
 public class TestResource {
     /**
-     * Increment the given number
+     * Increment the given number. Uses semaphore isolation to limit concurrent requests to 5. Additional requests are
+     * rejected.
      *
      * @param number the number to increment
      * @return the new value
      */
     @GET
     @Path("/increment/{number:.+}")
-    public Number increment(@PathParam("number") String number, @QueryParam("clientId") String clientId) {
-        return IncrementCommand.instance(number, clientId).execute();
+    public Number increment(@PathParam("number") String number) {
+        return IncrementCommand.instance(number, null).execute();
     }
 
     /**
-     * Decrement the given number.
+     * Decrement the given number. Uses thread isolation to timeout long requests. Unexpected to see timeouts.
      *
      * @param number the number to decrement
      * @return the new value
      */
     @GET
     @Path("/decrement/{number:.+}")
-    public Number decrement(@PathParam("number") String number, @QueryParam("clientId") String clientId) {
-        return DecrementCommand.instance(number, clientId).execute();
+    public Number decrement(@PathParam("number") String number) {
+        return DecrementCommand.instance(number, null).execute();
     }
 
     /**
-     * Sleep for the given number of milliseconds.
+     * Sleep for the given number of milliseconds. For semaphore isolation (default) limits concurrent requests to 2 and
+     * rejects additional concurrent requests. For thread isolation requests are timed out and rejected after 2000
+     * milliseconds.
      *
      * @param milliseconds the number of milliseconds
+     * @param type isolation strategy: semaphore or thread
      * @return the input seconds
      */
     @GET
     @Path("/sleep/{milliseconds:.+}")
-    public String sleep(@PathParam("milliseconds") String milliseconds, @QueryParam("type") String type, @QueryParam("clientId") String clientId) {
+    public String sleep(@PathParam("milliseconds") String milliseconds, @QueryParam("type") String type) {
         if (null == type || "semaphore".equalsIgnoreCase(type)) {
-            return SleepSemaphoreCommand.instance(milliseconds, clientId).execute();
+            return SleepSemaphoreCommand.instance(milliseconds, null).execute();
         } else {
-            return SleepThreadCommand.instance(milliseconds, clientId).execute();
+            return SleepThreadCommand.instance(milliseconds, null).execute();
         }
     }
 }
