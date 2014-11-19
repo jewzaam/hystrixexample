@@ -3,10 +3,10 @@ A simple example of using hystrix for a REST API.  Built to run on openshift.
 
 # How to Deploy
 Sorry I don't have very great steps here, but the basic outline is:
-1. Create a JBoss EAP app on OpenShift.
-2. Add this repo (or your fork) as a remote in your local checkout.
-3. Merge master branch of the remote added into your `master` branch.
-4. Push to OpenShift.
+* Create a JBoss EAP app on OpenShift.
+* Add this repo (or your fork) as a remote in your local checkout.
+* Merge master branch of the remote added into your `master` branch.
+* Push to OpenShift.
 
 # Projects Used
 
