@@ -11,7 +11,7 @@ import javax.ws.rs.core.Application;
 public class RestApplication extends Application {
 
     static {
-        ServoSetup.initialize();
+//        ServoSetup.initialize();
     }
 
     @Override

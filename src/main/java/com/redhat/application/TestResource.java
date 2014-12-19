@@ -26,7 +26,9 @@ public class TestResource {
     @GET
     @Path("/increment/{number:.+}")
     public Number increment(@PathParam("number") String number) {
-        return IncrementCommand.instance(number, null).execute();
+        Number out = IncrementCommand.instance(number, null).execute();
+        ServoSetup.initialize();
+        return out;
     }
 
     /**
