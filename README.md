@@ -4,6 +4,7 @@ A simple example of using hystrix for a REST API.  Built to run on openshift.
 # How to Deploy
 Sorry I don't have very great steps here, but the basic outline is:
 * Create a JBoss EAP app on OpenShift.
+* Set environment variables: GRAPHITE_HOSTNAME and GRAPHITE_PORT
 * Add this repo (or your fork) as a remote in your local checkout.
 * Merge master branch of the remote added into your `master` branch.
 * Push to OpenShift.
@@ -29,6 +30,12 @@ Servo  integrates directly with Hystrix to publish all metrics collected from a 
 
 # Setup: Basic
 This section will provide enough code to convey what is happening, but won't be a full fledged application.  This repo is an example application that can be deployed on OpenShift.
+
+## Environment
+```
+rhc env-set GRAPHITE_HOSTNAME="<your hostname>" --app <your app>
+rhc env-set GRAPHITE_PORT="<your port>" --app <your app>
+```
  
 ## Hystrix
 This example shows a simple command that takes a string argument that represents the number of milliseconds the command will sleep.  The command converts the input to an integer, executes the thread sleep, then returns the original milliseconds argument.  When the command fails (number format exception or timeout) it returns the original milliseconds argument with "TIMEOUT" concatenated.  This makes it easy to see when the command is successful vs failing.

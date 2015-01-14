@@ -34,8 +34,8 @@ public class ServoSetup {
             );
         }
 
-        String host = "metrics11.devlab.redhat.com";//System.getenv("GRAPHITE_HOSTNAME");
-        String port = "8080";//System.getenv("GRAPHITE_PORT");
+        String host = System.getenv("GRAPHITE_HOSTNAME");
+        String port = System.getenv("GRAPHITE_PORT");
 
         String addr = host + ":" + port;
         LOGGER.info("ServoConfig: prefix={}, address={}", prefix, addr);
